@@ -20,7 +20,7 @@
       <x>570</x>
       <y>10</y>
       <width>221</width>
-      <height>381</height>
+      <height>411</height>
      </rect>
     </property>
     <property name="title">
@@ -258,6 +258,19 @@ zurücksetzen</string>
      </property>
      <property name="text">
       <string>Zufällig</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnIncColor">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>370</y>
+       <width>141</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Farbwert inkrementieren</string>
      </property>
     </widget>
    </widget>

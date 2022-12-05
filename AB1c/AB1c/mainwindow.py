@@ -111,6 +111,13 @@ class MainWindow(Base, Form):
         self.set_avatar_size(AVATAR_DEFAULT_SIZE)
 
     @Slot()
+    def on_btnIncColor_clicked(self):
+        add = lambda val, adder : (val + adder) % 256
+        self.red = add(self.red, 5); self.green = add(self.green, 7); self.blue = add(self.blue, 3)
+        self.set_avatar_color()
+        self.set_color_sliders()
+
+    @Slot()
     def on_sldRed_valueChanged(self):
         self.red = self.sldRed.value()
         self.set_avatar_color()
