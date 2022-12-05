@@ -32,20 +32,25 @@ move_pxl_count = 10
 MAX_X = 1000
 MAX_Y = 500
 AVATAR_BASE_X = 10
-AVATAR_BASE_Y = 40
+AVATAR_BASE_Y = 60
 AVATAR_DEFAULT_SIZE = 40
 
 class MainWindow(Base, Form):
     def __init__(self, parent=None):
         super(self.__class__, self).__init__(parent)
         self.setupUi(self)
+        self.set_lblElementInfo()
 
     avatar_x = 0; avatar_y = 0
     avatar_size = AVATAR_DEFAULT_SIZE
     red = 85; green = 170; blue = 0
 
+    def set_lblElementInfo(self):
+        self.lblElementInfo.setText("Position: ( " + str(self.avatar_x) + " | " + str(self.avatar_y) + " )\nSize: " + str(self.avatar_size) + " px")
+
     def set_avatar_geometry(self):
         self.btnAvatar.setGeometry(self.avatar_x + AVATAR_BASE_X, self.avatar_y + AVATAR_BASE_Y, self.avatar_size, self.avatar_size)
+        self.set_lblElementInfo()
 
     def change_avatar_pos(self, delta_x, delta_y):
         self.set_avatar_pos(self.avatar_x + delta_x, self.avatar_y + delta_y)
@@ -67,6 +72,11 @@ class MainWindow(Base, Form):
         clr_str = "rgb(" + str(self.red) + ", " + str(self.green) + ", " + str(self.blue) + ")"
         self.lblClr.setText(clr_str)
         self.btnAvatar.setStyleSheet("QPushButton { background-color: " + clr_str + " }")
+
+    def set_color_sliders(self):
+        self.sldRed.setValue(self.red)
+        self.sldGreen.setValue(self.green)
+        self.sldBlue.setValue(self.blue)
 
     @Slot()
     def on_btnResetPosition_clicked(self):
@@ -119,6 +129,7 @@ class MainWindow(Base, Form):
     def on_btnRand_clicked(self):
         self.red = random.randint(0, 255); self.green = random.randint(0, 255); self.blue = random.randint(0, 255)
         self.set_avatar_color()
+        self.set_color_sliders()
 
 
 if __name__ == "__main__":
